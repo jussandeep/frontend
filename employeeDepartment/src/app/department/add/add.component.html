@@ -1,0 +1,94 @@
+<div class="form-container">
+  <div class="form-border">
+    <h2>Add Department</h2><br>
+    <!-- <div *ngIf="errorMessage" class="error-message">
+      
+      {{ errorMessage }}
+    </div> -->
+
+<form class="k-form k-form-md" [formGroup]="form">
+  <kendo-formfield>
+    <kendo-label
+      labelCssClass="k-form-label"
+      [for]="'name'"
+      text="Department Name"
+    ></kendo-label>
+    <kendo-textbox
+      [style.width.px]="200"
+      formControlName="name"
+      required
+    ></kendo-textbox>
+    <kendo-formerror *ngIf="form.get('name')?.hasError('required')">Error: Department Name is required</kendo-formerror>
+    <kendo-formerror *ngIf="form.get('name')?.hasError('invalidInput')">Error: Invalid input, only letters are allowed</kendo-formerror>
+  </kendo-formfield>
+
+  <kendo-formfield>
+    <kendo-label
+      labelCssClass="k-form-label"
+      [for]="'numberOfEmployees'"
+      text="Number Of Employees"
+    ></kendo-label>
+    <kendo-textbox
+      [style.width.px]="200"
+      formControlName="numberOfEmployees"
+      required
+    ></kendo-textbox>
+    <kendo-formerror *ngIf="form.get('numberOfEmployees')?.hasError('required')">Error: Number Of Employees is required</kendo-formerror>
+    <kendo-formerror *ngIf="form.get('numberOfEmployees')?.hasError('rangeError')">Error: Enter a number between 1 and 100</kendo-formerror>
+    <kendo-formerror *ngIf="form.get('numberOfEmployees')?.hasError('invalidNumber')">Error: Enter a valid number (digits only)</kendo-formerror>
+  </kendo-formfield>
+
+  <kendo-formfield>
+    <kendo-label
+      labelCssClass="k-form-label"
+      [for]="'RolesandWorkTypes'"
+      text="Roles and Work Types:"
+    ></kendo-label>
+    <kendo-dropdownlist
+      [data]="listItems"
+      formControlName="RolesandWorkTypes"
+      [textField]="'text'"
+      [valueField]="'value'"
+      [defaultItem]="{ text: 'Select', value: null }"
+      class="dropdown"
+    ></kendo-dropdownlist>    
+  <kendo-formerror *ngIf="form.get('RolesandWorkTypes')?.hasError('required')">Error: Roles and Work Types is required</kendo-formerror>
+
+  </kendo-formfield>
+  
+  <kendo-formfield>
+    <kendo-label 
+    [for]="Active" 
+    text="Active">
+  </kendo-label>
+    <kendo-switch 
+    #Active 
+    formControlName="isActive"
+    ></kendo-switch>
+  </kendo-formfield>
+
+  <kendo-formfield>
+    <kendo-label
+      text="Phone number"
+      labelCssClass="k-form-label"
+      [for]="'phoneNumber'"
+    ></kendo-label>
+    <kendo-textbox
+      formControlName="phoneNumber"
+      [style.width.px]="200"
+      required
+    ></kendo-textbox>
+    <kendo-formerror *ngIf="form.get('phoneNumber')?.hasError('required') && !form.get('phoneNumber')?.value">Error: 10 numbers is required</kendo-formerror>
+    <kendo-formerror *ngIf="form.get('phoneNumber')?.hasError('pattern')">Phone Number is not valid, Enter 10 digit phone number.
+    </kendo-formerror>
+    <kendo-formerror *ngIf="form.get('phoneNumber')?.hasError('phoneNumberExists')">Phone Number already exists.
+    </kendo-formerror>
+  </kendo-formfield>
+  <br><br><br>
+<div class="buttons">
+  <button type="button"  (click)="saveData()">Save</button>
+  <button type="button" (click)="cancelPage()" class="cancel">Cancel</button>
+</div>
+</form>
+</div>
+</div>

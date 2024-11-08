@@ -1,0 +1,108 @@
+<p>department works!</p>
+
+<!-- <div *ngIf="errorMessage" class="error-message">
+{{errorMessage}}
+</div> -->
+<button (click)="viewEmplyooes()">Employees</button><br><br>
+
+<kendo-grid
+[kendoGridBinding]="department"
+[pageSize]="10"
+[pageable]="true"
+[sortable]="true"
+[navigable]="true"
+
+[data]="gridView" 
+[selectable]="{ mode: 'multiple' }"
+(selectionChange)="onSelectionChange($event)"
+
+>
+<ng-template kendoGridToolbarTemplate>
+ <div> <button (click)="AddNewEmployee()">Addnew
+    </button>
+  </div>
+   
+  <kendo-textbox
+  
+  class="searchBar"
+  [style.width.px]="200"
+  placeholder="Search"
+  (input)="onFilter($event)" 
+  >  </kendo-textbox>
+
+<button (click)="export()" class="exportIcon-button" >
+  <kendo-svg-icon [icon]="exporticon.exportIcon" class="exportIcon" title="ExportIcon"></kendo-svg-icon> 
+</button>
+
+<button  *ngIf="selectedIds.length > 0" (click)="deleteSelectedRows()" class="delete-button">
+  <kendo-svg-icon [icon]="trashIcon"  class="trashIcon" title="Delete"></kendo-svg-icon>
+</button>
+
+</ng-template>
+<kendo-grid-checkbox-column
+        [showSelectAll]="true"
+        [width]="40"
+        
+></kendo-grid-checkbox-column>
+
+<kendo-grid-column
+  field="id"
+  title="id"
+  readonly="true"
+  [ariaDisabled]="true"
+></kendo-grid-column>
+<kendo-grid-column
+  field="departmentName"
+  editor="text"
+  title="Department Name"
+></kendo-grid-column>
+<kendo-grid-column
+  field="numberOfEmployees"
+  editor="numeric"
+  title="Number Of Employees"
+></kendo-grid-column>
+<kendo-grid-column
+  field="rolesandWorkTypes"
+  editor="text"
+  title="Roles and Work Types "
+></kendo-grid-column>
+
+<kendo-grid-column
+  field="active"
+  editor="boolean"
+  title="Active"
+></kendo-grid-column>
+
+
+<kendo-grid-column
+  field="phoneNumber"
+  editor="numeric"
+  title="Phone Number"
+></kendo-grid-column>
+
+<kendo-grid-command-column 
+  title="command" [width]="220">
+  <ng-template kendoGridCellTemplate let-dataItem="dataItem" let-isNew="isNew">
+    <button (click)="editDepartment(dataItem.id)">Edit</button>
+    <!-- <button kendoGridCancelCommand>
+      {{ isNew ? "Discard changes" : "Cancel" }}
+    </button> -->
+
+    <!-- <button type="button" (click)="removeRow(dataItem.id)" >Remove</button> -->
+    <button type="button" (click)="removeRow(dataItem.id)">Remove</button>
+  </ng-template>
+</kendo-grid-command-column>
+
+<kendo-grid-command-column>
+  <!-- {{ isNew ? "Add" : "Update" }} -->
+</kendo-grid-command-column>
+
+
+
+
+
+
+
+
+
+

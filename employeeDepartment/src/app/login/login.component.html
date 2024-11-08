@@ -1,0 +1,64 @@
+
+<div class="form-container">
+  
+  <div class="form-border">
+    <h2 style="display: flex; flex-direction: column; text-align: center;">Login</h2><br>
+<form class="k-form k-form-md" [formGroup]="KendoForm">
+  <kendo-formfield>
+    <kendo-label
+      text="Email"
+      labelCssClass="k-form-label"
+      [for]="'email'"
+      
+    ></kendo-label>
+
+    <kendo-textbox
+      [style.width.px]="200"
+      formControlName="Email"
+      required
+      [(ngModel)]="loginObj.email"
+    ></kendo-textbox>
+    <kendo-formerror *ngIf="KendoForm.get('Email')?.hasError('required')">Error: email is required</kendo-formerror>
+    <kendo-formerror *ngIf="KendoForm.get('Email')?.hasError('email')">Please enter a vaild email address</kendo-formerror>
+  </kendo-formfield>
+
+  <kendo-formfield>
+    <kendo-label
+      text="Password"
+      labelCssClass="k-form-label"
+      [for]="'password'"
+      
+    ></kendo-label>
+
+    <kendo-textbox
+      [style.width.px]="200"
+      formControlName="password"
+      #password
+      required
+      [(ngModel)]="loginObj.password"
+      [clearButton]="true"
+    >
+    <ng-template kendoTextBoxSuffixTemplate>
+      <button
+        kendoButton
+        look="clear"
+        [svgIcon]="eyeIcon"
+        (click)="toggleVisibility()"
+      ></button>
+    </ng-template>
+  </kendo-textbox>
+    <kendo-formerror *ngIf="KendoForm.get('password')?.hasError('required')">Error: Password is required</kendo-formerror>
+  </kendo-formfield><br>
+<div class="forgotpassword">
+<a href="forgotpassword">Forgotpassword</a>
+</div><br>
+  <div class="buttons">
+    
+    <button type="button"  (click)="onlogintoken()" style="width: 200px; height: 30px;">Login</button><br>
+    <button type="button"  (click)="onSingupPage()" style="width: 200px; height: 30px;">Sign Up</button>
+   
+  </div>
+  
+</form>
+</div>
+</div>

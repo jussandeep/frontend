@@ -1,0 +1,86 @@
+
+<!-- [kendoGridReactiveEditing]="createFormGroup" -->
+<kendo-grid
+
+[kendoGridBinding]="employees"
+[pageSize]="10"
+[pageable]="true"
+[sortable]="true"
+[navigable]="true"
+[resizable]="true"
+>
+<ng-template kendoGridToolbarTemplate>
+  <button themeColor=""   (click)="AddNewEmployee()">Add new</button>
+  <button (click)="Department()">Department</button>
+</ng-template>
+<kendo-grid-column
+  field="id"
+  title="id"
+  readonly="true"
+  [ariaDisabled]="true"
+></kendo-grid-column>
+<kendo-grid-column
+  field="firstName"
+  editor="text"
+  title="First Name"
+></kendo-grid-column>
+<kendo-grid-column
+  field="lastName"
+  editor="text"
+  title="Last Name"
+></kendo-grid-column>
+<kendo-grid-column
+  field="department"
+  editor="text"
+  title="Department"
+></kendo-grid-column>
+
+<kendo-grid-column
+  field="active"
+  title="Active">
+</kendo-grid-column>
+
+
+  <!-- <kendo-badge
+  [rounded]="rounded"
+  [size]="size"
+  [fill]="fill"
+  [themeColor]="themeColor"
+  ><kendo-grid-column
+  field="active"
+  title="Active">
+</kendo-grid-column></kendo-badge> -->
+
+
+<kendo-grid-column
+  field="age"
+  editor="numeric"
+  title="Age"
+></kendo-grid-column>
+<kendo-grid-column
+  field="gender"
+  editor="text"
+  title="Gender"
+></kendo-grid-column>
+<kendo-grid-column
+  field="salary"
+  editor="numeric"
+  title="Salary"
+></kendo-grid-column>
+<kendo-grid-command-column title="command" [width]="220">
+  <ng-template kendoGridCellTemplate let-dataItem="dataItem" let-isNew="isNew">
+    <button  style="margin-right: 20px;" (click)="editEmployee(dataItem.id)">Edit</button>
+    <button kendoGridRemoveCommand themeColor="primary" (click)="remove(dataItem)">Remove</button>
+    <!-- <button kendoGridSaveCommand [disabled]="formGroup.invalid" (click)="save(formGroup)">
+      {{ isNew ? "Add" : "Update" }}
+    </button> -->
+    <!-- <button kendoGridCancelCommand>
+      {{ isNew ? "Discard changes" : "Cancel" }}
+    </button> -->
+  </ng-template>
+</kendo-grid-command-column>
+</kendo-grid>
+<div kendoDialogContainer></div>
+
+
+

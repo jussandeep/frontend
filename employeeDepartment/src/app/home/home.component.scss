@@ -1,0 +1,28 @@
+.logoutButton{
+    display: flex;
+    justify-content: end;
+    margin-right: 10px;
+}
+
+.theme-switcher-module--switchBtn--74645 {
+    align-items: center;
+    -webkit-align-items: center;
+    background-color: var(--button-switch-bg-color);
+    border: 1px solid var(--button-switch-border-color);
+    border-radius: 100vh;
+    cursor: pointer;
+    display: flex;
+    display: -webkit-flex;
+    height: 32px;
+    justify-content: center;
+    -webkit-justify-content: center;
+    padding: 1px;
+    width: 32px;
+}
+
+.theme-switcher-module--switchBtn--74645 .theme-switcher-module--switchIcon--3dad4 {
+    background-color: rgb(121, 121, 122);
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}

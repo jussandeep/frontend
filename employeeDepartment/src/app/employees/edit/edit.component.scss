@@ -1,0 +1,46 @@
+.example-wrap {
+    display: flex;
+    justify-content: center;
+  }
+  
+.k-form {
+    width: 800px;  
+}
+.main-container{
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    
+  }
+  
+  .grid-item {
+    width: 100%;
+  }
+  
+.k-form-buttons {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px 0;
+    justify-content: center;
+  }
+  .k-form-legend{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 20px;
+    height: 30px;
+    padding-top: 10px;
+  }
+  kendo-label{
+    font-size: 18px;
+  }
+  input,kendo-textbox,kendo-numerictextbox{
+    border: 1px solid rgb(55, 53, 53);
+  }
+  kendo-checkbox{
+    background-color: beige;
+  }

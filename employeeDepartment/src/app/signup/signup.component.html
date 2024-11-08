@@ -1,0 +1,96 @@
+<div class="form-container">
+   <div class="form-border">
+     <h2 class="form-title">Sign Up</h2>
+     <form class="k-form k-form-md" [formGroup]="signupForm">
+       
+       <!-- Name Field -->
+       <kendo-formfield>
+         <kendo-label text="Name" labelCssClass="k-form-label"></kendo-label>
+         <kendo-textbox formControlName="formName" [style.width.px]="200" required></kendo-textbox>
+       <kendo-formerror *ngIf="signupForm.get('formName')?.hasError('required')">Error: Name is required </kendo-formerror>
+         <!-- <kendo-formerror *ngIf="signupForm.get('formName')?.hasError('EmailExists')">Name already Exist</kendo-formerror> -->
+        
+        </kendo-formfield>
+ 
+       <!-- Username/Email Field -->
+       <kendo-formfield>
+         <kendo-label text="Email" labelCssClass="k-form-label"></kendo-label>
+         <kendo-textbox formControlName="formEmail" [style.width.px]="200" required></kendo-textbox>
+      <kendo-formerror *ngIf="signupForm.get('formEmail')?.hasError('required')">Error: user Name is required</kendo-formerror>
+    <kendo-formerror *ngIf="signupForm.get('formEmail')?.hasError('email')">Please enter a vaild email address</kendo-formerror>  
+    <kendo-formerror *ngIf="signupForm.get('formEmail')?.hasError('EmailExists')" >Email already exist</kendo-formerror>
+  </kendo-formfield>
+ 
+       <!-- Create Password Field -->
+       <kendo-formfield>
+         <kendo-label text="Create Password" labelCssClass="k-form-label"></kendo-label>
+         <kendo-textbox 
+           #CreatePassword 
+           formControlName="formCreatePassword" 
+           [style.width.px]="200" 
+           required>
+
+           <ng-template kendoTextBoxSuffixTemplate>
+             <button kendoButton look="clear" [svgIcon]="eyeIcon" (click)="toggleVisibility()"></button>
+           </ng-template>
+          
+         </kendo-textbox>
+         <kendo-formerror *ngIf="signupForm.get('formCreatePassword')?.hasError('required') && signupForm.get('formCreatePassword')?.touched">
+          Error: Create Password is required
+        </kendo-formerror>
+        <kendo-formerror *ngIf="signupForm.get('formCreatePassword')?.hasError('minlength') && signupForm.get('formCreatePassword')?.touched">
+          Error: Create Password must be at least 6 characters
+        </kendo-formerror>
+        
+
+        </kendo-formfield>
+ 
+       <!-- Confirm Password Field -->
+       <kendo-formfield>
+         <kendo-label text="Confirm Password" labelCssClass="k-form-label"></kendo-label>
+         <kendo-textbox 
+           #ConfirmPassword 
+           formControlName="ConfirmPassword" 
+           [style.width.px]="200" 
+           required>
+           <ng-template kendoTextBoxSuffixTemplate>
+             <button kendoButton look="clear" [svgIcon]="eyeIcon" (click)="toggleVisibilityforConPass()"></button>
+           </ng-template>
+         </kendo-textbox>
+         <kendo-formerror *ngIf="signupForm.get('ConfirmPassword')?.hasError('required')"> 
+          Error: Confirm Password is required
+        </kendo-formerror>
+        <kendo-formerror *ngIf="signupForm.get('ConfirmPassword')?.hasError('MustMatch')">
+          Error: Passwords do not match</kendo-formerror>
+        <!-- <kendo-formerror *ngIf="signupForm.get('ConfirmPassword')?.hasError('must')">
+          Error: Passwords do not match
+        </kendo-formerror>  -->
+         <!-- <kendo-formerror *ngIf="signupForm.get('ConfirmPassword')?.hasError('required') && signupForm.get('ConfirmPassword')?.touched">Error: Confirm Password is required</kendo-formerror>  -->
+        
+         <!-- <kendo-formerror *ngIf="signupForm.errors?.['passwordMismatch'] && signupForm.get('ConfirmPassword')?.touched">
+          Error: Passwords do not match
+        </kendo-formerror> --> 
+        <!-- <kendo-formerror *ngIf="signupForm.get('ConfirmPassword')?.hasError('required')">
+          Error: Confirm Password is required
+        </kendo-formerror> -->
+        
+        <!-- <kendo-formerror *ngIf="signupForm.errors?.['passwordMismatch']">
+          Error: Passwords do not match
+        </kendo-formerror> -->
+        <!-- <kendo-formerror *ngIf="signupForm.get('ConfirmPassword')?.hasError('passwordMismatch')">
+          Error: Passwords do not match
+        </kendo-formerror> -->
+
+        </kendo-formfield><br><br>
+       
+       <!-- Submit Button -->
+       <div class="buttons">
+         <button kendoButton type="button" (click)="onSignup()" class="signup-button" style="width: 200px;">Sign Up</button>
+       </div><br>
+       <div class="buttons">
+        <button kendoButton type="button" (click)="onlogin()" class="signup-button"style="width: 200px">Login</button>
+      </div>
+     </form>
+   </div>
+ </div>
+ 

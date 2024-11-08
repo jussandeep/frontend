@@ -1,0 +1,291 @@
+<div class="example-wrap">
+  <form class="k-form k-form-md" [formGroup]="registerForm">
+    <fieldset class="k-form-fieldset">
+      <legend class="k-form-legend">New Employee</legend>
+      <div class="main-container">
+      <div class="grid-container">
+        <div class="grid-item">
+          <div *ngIf="errorMessage" class="error-message">
+      
+            {{ errorMessage }}
+          </div>
+      
+          <kendo-formfield>
+            <kendo-label
+              labelCssClass="k-form-label"
+              [for]="firstName"
+              text="First Name"
+            ></kendo-label>
+            <kendo-textbox
+              formControlName="firstName"
+              #firstName
+              required
+              [minlength]="3"
+            ></kendo-textbox>
+
+            <!-- <kendo-formhint>Your first name</kendo-formhint> -->
+            <kendo-formerror>Error: First name is required</kendo-formerror>
+          </kendo-formfield>
+
+          
+
+          <kendo-formfield orientation="horizontal">
+            <kendo-label text="Gender"></kendo-label>
+            <ul class="k-radio-list k-list-horizontal">
+              <li class="k-radio-item">
+                <input
+                  type="radio"
+                  #male
+                  value="male"
+                  kendoRadioButton
+                  formControlName="gender"
+                />
+                <kendo-label [for]="male" text="Male"></kendo-label>
+              </li>
+
+              <li class="k-radio-item">
+                <input
+                  type="radio"
+                  #female
+                  value="female"
+                  kendoRadioButton
+                  formControlName="gender"
+                />
+                <kendo-label [for]="female" text="Female"></kendo-label>
+              </li>
+
+              <li class="k-radio-item">
+                <input
+                  type="radio"
+                  #other
+                  value="other"
+                  kendoRadioButton
+                  formControlName="gender"
+                />
+                <kendo-label [for]="other" text="Other"></kendo-label>
+              </li>
+            </ul>
+            <kendo-formerror>Error: Gender is required.</kendo-formerror>
+          </kendo-formfield>
+
+          <kendo-formfield>
+            <kendo-label
+              labelCssClass="k-form-label"
+              [for]="phoneNumber"
+              text="PhoneNumber"
+            ></kendo-label>
+            <kendo-textbox
+              formControlName="phoneNumber"
+              #phoneNumber
+              required
+            ></kendo-textbox>
+            <kendo-formerror>Phone Number is not valid, Enter 10 digit phonenumber.</kendo-formerror>
+          </kendo-formfield>
+          
+  
+          <kendo-formfield>
+            <kendo-label [for]="designation" text="Designation"></kendo-label>
+            <kendo-dropdownlist
+              #designation
+              formControlName="designation"
+              defaultItem="--None--"
+              [data]="designations"
+            >
+            </kendo-dropdownlist>
+            <kendo-formerror>Required</kendo-formerror>
+          </kendo-formfield>
+  
+          <kendo-formfield>
+            <kendo-label
+              [for]="technicalSkills"
+              text="Technical Skills"
+            ></kendo-label>
+            <kendo-multiselect
+              #technicalSkills
+              formControlName="technicalSkills"
+              [data]="technicalSkillss"
+              [filterable]="true"
+              [checkboxes]="true"
+              placeholder="e.g. Java"
+              (filterChange)="onFilterChange($event)"
+            >
+            </kendo-multiselect>
+            <kendo-formerror>Required</kendo-formerror>
+          </kendo-formfield>
+
+          <kendo-formfield>
+            <kendo-label [for]="age" text="Age"></kendo-label>
+            <kendo-numerictextbox
+              #age
+              formControlName="age"
+              [min]="18"
+              [max]="60"
+            ></kendo-numerictextbox>
+            <kendo-formerror>Age is not less than 18</kendo-formerror>
+          </kendo-formfield>
+  
+          <kendo-formfield>
+            <kendo-label
+              [for]="isExperienced"
+              class="k-checkbox-label"
+              text="Experienced"
+            ></kendo-label>
+            <input
+              #isExperienced
+              type="checkbox"
+              kendoCheckBox
+              formControlName="isExperienced"
+              (change)="onExperienceCheckboxChange($event)"
+            />
+            <!-- <kendo-checkbox #uncheckedState  > </kendo-checkbox> -->
+          </kendo-formfield>
+  
+         
+        </div>
+
+        <div class="grid-item">
+          <kendo-formfield>
+            <kendo-label
+              labelCssClass="k-form-label"
+              [for]="lastName"
+              text="Last Name"
+            ></kendo-label>
+            <kendo-textbox
+              formControlName="lastName"
+              #lastName
+              required
+              [minlength]="3"
+            ></kendo-textbox>
+
+            <!-- <kendo-formhint>Your last name</kendo-formhint> -->
+            <kendo-formerror>Error: Last name is required</kendo-formerror>
+          </kendo-formfield>
+
+          <kendo-formfield>
+            <kendo-label [for]="isActive" text="Active"></kendo-label>
+            <kendo-switch #isActive formControlName="isActive"></kendo-switch>
+          </kendo-formfield>
+
+          <kendo-formfield>
+            <kendo-label
+              labelCssClass="k-form-label"
+              [for]="email"
+              text="Email"
+            ></kendo-label>
+            <kendo-textbox
+              formControlName="email"
+              #email
+              required
+            ></kendo-textbox>
+            <kendo-formerror>Error: Not valid email format</kendo-formerror>
+          </kendo-formfield>
+
+          <kendo-formfield>
+            <kendo-label [for]="dob" text="Date of Birth"></kendo-label>
+            <kendo-datepicker #dob formControlName="dob" [max]="maxDob">
+            </kendo-datepicker>
+  
+            <kendo-formerror>
+              <span *ngIf="!dob.value">Required</span>
+              <span *ngIf="dob.value && dob.value > maxDob">
+                You must be at least 18 years old
+              </span>
+            </kendo-formerror>
+          </kendo-formfield>
+
+          <kendo-formfield>
+            <kendo-label [for]="salary" text="Salary"></kendo-label>
+            <kendo-numerictextbox
+              #salary
+              formControlName="salary"
+              [min]="0"
+            ></kendo-numerictextbox>
+            <kendo-formerror>Error: Salary is required</kendo-formerror>
+          </kendo-formfield>
+
+          <kendo-formfield>
+            <kendo-label [for]="otherSkills" text="Other Skills"></kendo-label>
+            <kendo-textarea
+              #otherSkills
+              [style.width.px]="200"
+              formControlName="otherSkills"
+            >
+            </kendo-textarea>
+          </kendo-formfield>
+          <kendo-formfield [hidden]="!isExperiencedEnabled">
+            <kendo-label
+              [for]="experience"
+              text="Eperience In Years"
+            ></kendo-label>
+            <kendo-combobox
+              #experience
+              formControlName="experience"
+              [data]="experienceInYears"
+              [kendoDropDownFilter]="{ operator: 'contains' }"
+            >
+            </kendo-combobox>
+            <kendo-formerror>Required</kendo-formerror>
+          </kendo-formfield>
+        
+        </div>
+      
+      </div>
+      <kendo-label text="Address"></kendo-label>
+      <div >
+         
+            <kendo-formgroup formGroupName="address" [formGroup]="addressFormGroup">
+              <div class="grid-container">
+              <div class="grid-item">
+              <kendo-formfield>
+                <kendo-label text="Street"></kendo-label>
+                <kendo-textarea
+                [style.width.px]="200" 
+                formControlName="street">
+              </kendo-textarea>
+              </kendo-formfield>
+              <kendo-formfield>
+                <kendo-label text="City"></kendo-label>
+                <kendo-textbox formControlName="city"></kendo-textbox>
+              </kendo-formfield>
+              <kendo-formfield>
+                <kendo-label text="State"></kendo-label>
+                <kendo-dropdownlist formControlName="state" [data]="states"></kendo-dropdownlist>
+              </kendo-formfield>
+            </div>
+            <div class="grid-item">
+              <kendo-formfield>
+                <kendo-label text="Country"></kendo-label>
+                <kendo-textbox formControlName="country"></kendo-textbox>
+              </kendo-formfield>
+              <kendo-formfield>
+                <kendo-label text="Zip"></kendo-label>
+                <kendo-textbox formControlName="zipCode" ></kendo-textbox>
+                <kendo-formerror>Zip code is not Valid, Enter 6 digits.</kendo-formerror>
+              </kendo-formfield>
+            </div>
+          </div>
+            </kendo-formgroup>
+          <!-- </kendo-formfield> -->
+      </div>
+   
+      <div class="k-form-buttons">
+        <button
+          kendoButton
+          [disabled]="!registerForm.valid"
+          (click)="submitForm()"
+        >
+          Submit
+        </button>
+        <button kendoButton (click)="clearForm()">Clear</button>
+        <button kendoButton (click)="cancelForm()">Cancel</button>
+      </div>
+    </div>
+    </fieldset>
+  </form>
+</div>
+<ng-template #notifTemplate>
+  <p style="margin: 0; font-size: 18px; padding: 5px">
+    {{ notificationMsg }}
+  </p>
+  <a class="k-icon k-i-close" title="Close" style="cursor: pointer"></a>
+</ng-template>
